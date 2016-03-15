@@ -16,6 +16,11 @@ class SemesterView: UIViewController
         
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        
+        
+    }
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }

@@ -8,22 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		C57CA68B1C95279E00863812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57CA68A1C95279E00863812 /* AppDelegate.swift */; };
-		C57CA68D1C95279E00863812 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57CA68C1C95279E00863812 /* ViewController.swift */; };
+		C57CA68D1C95279E00863812 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57CA68C1C95279E00863812 /* AboutView.swift */; };
 		C57CA6901C95279E00863812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57CA68E1C95279E00863812 /* Main.storyboard */; };
 		C57CA6931C95279E00863812 /* Semestr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C57CA6911C95279E00863812 /* Semestr.xcdatamodeld */; };
 		C57CA6951C95279E00863812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57CA6941C95279E00863812 /* Assets.xcassets */; };
 		C57CA6981C95279E00863812 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57CA6961C95279E00863812 /* LaunchScreen.storyboard */; };
+		C5F8A6361C977B9600291453 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6351C977B9600291453 /* IntroView.swift */; };
+		C5F8A6381C977B9F00291453 /* SelectNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6371C977B9F00291453 /* SelectNewView.swift */; };
+		C5F8A63A1C977BAA00291453 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6391C977BAA00291453 /* BrowserView.swift */; };
+		C5F8A63C1C977BB300291453 /* EditSemesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A63B1C977BB300291453 /* EditSemesterView.swift */; };
+		C5F8A63E1C977BBB00291453 /* ListSemesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A63D1C977BBB00291453 /* ListSemesterView.swift */; };
+		C5F8A6401C977BC200291453 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A63F1C977BC200291453 /* SettingView.swift */; };
+		C5F8A6421C977BC900291453 /* SemesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6411C977BC900291453 /* SemesterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C57CA6871C95279E00863812 /* Semestr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Semestr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C57CA68A1C95279E00863812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C57CA68C1C95279E00863812 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C57CA68C1C95279E00863812 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutView.swift; path = Semestr/AboutView.swift; sourceTree = "<group>"; };
 		C57CA68F1C95279E00863812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C57CA6921C95279E00863812 /* Semestr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Semestr.xcdatamodel; sourceTree = "<group>"; };
 		C57CA6941C95279E00863812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C57CA6971C95279E00863812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C57CA6991C95279E00863812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5F8A6351C977B9600291453 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		C5F8A6371C977B9F00291453 /* SelectNewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectNewView.swift; sourceTree = "<group>"; };
+		C5F8A6391C977BAA00291453 /* BrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
+		C5F8A63B1C977BB300291453 /* EditSemesterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSemesterView.swift; sourceTree = "<group>"; };
+		C5F8A63D1C977BBB00291453 /* ListSemesterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSemesterView.swift; sourceTree = "<group>"; };
+		C5F8A63F1C977BC200291453 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		C5F8A6411C977BC900291453 /* SemesterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +71,30 @@
 			isa = PBXGroup;
 			children = (
 				C57CA68A1C95279E00863812 /* AppDelegate.swift */,
-				C57CA68C1C95279E00863812 /* ViewController.swift */,
+				C5F8A6341C977B2E00291453 /* Views */,
 				C57CA68E1C95279E00863812 /* Main.storyboard */,
+				C57CA6911C95279E00863812 /* Semestr.xcdatamodeld */,
 				C57CA6941C95279E00863812 /* Assets.xcassets */,
 				C57CA6961C95279E00863812 /* LaunchScreen.storyboard */,
 				C57CA6991C95279E00863812 /* Info.plist */,
-				C57CA6911C95279E00863812 /* Semestr.xcdatamodeld */,
 			);
 			path = Semestr;
+			sourceTree = "<group>";
+		};
+		C5F8A6341C977B2E00291453 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5F8A6351C977B9600291453 /* IntroView.swift */,
+				C5F8A6371C977B9F00291453 /* SelectNewView.swift */,
+				C5F8A6391C977BAA00291453 /* BrowserView.swift */,
+				C5F8A63B1C977BB300291453 /* EditSemesterView.swift */,
+				C5F8A63F1C977BC200291453 /* SettingView.swift */,
+				C5F8A6411C977BC900291453 /* SemesterView.swift */,
+				C5F8A63D1C977BBB00291453 /* ListSemesterView.swift */,
+				C57CA68C1C95279E00863812 /* AboutView.swift */,
+			);
+			name = Views;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +168,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C57CA68D1C95279E00863812 /* ViewController.swift in Sources */,
+				C5F8A63E1C977BBB00291453 /* ListSemesterView.swift in Sources */,
+				C57CA68D1C95279E00863812 /* AboutView.swift in Sources */,
+				C5F8A6421C977BC900291453 /* SemesterView.swift in Sources */,
+				C5F8A6381C977B9F00291453 /* SelectNewView.swift in Sources */,
+				C5F8A6401C977BC200291453 /* SettingView.swift in Sources */,
+				C5F8A6361C977B9600291453 /* IntroView.swift in Sources */,
 				C57CA68B1C95279E00863812 /* AppDelegate.swift in Sources */,
 				C57CA6931C95279E00863812 /* Semestr.xcdatamodeld in Sources */,
+				C5F8A63C1C977BB300291453 /* EditSemesterView.swift in Sources */,
+				C5F8A63A1C977BAA00291453 /* BrowserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +325,7 @@
 				C57CA69E1C95279E00863812 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

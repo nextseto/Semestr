@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="K6p-aA-Q3x">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Semester View-->
+        <!--All Semesters-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SemesterView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,11 +15,127 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="N3l-RT-fho">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SemesterCell" id="SwU-HF-cxf">
+                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SwU-HF-cxf" id="yp1-uz-Vr7">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ShV-b1-yNJ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lLq-Nm-PVv"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="N3l-RT-fho" secondAttribute="trailing" id="Iv3-Ve-HDf"/>
+                            <constraint firstItem="N3l-RT-fho" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f3h-kz-jqZ"/>
+                            <constraint firstItem="N3l-RT-fho" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gG9-Me-Zoj"/>
+                            <constraint firstItem="N3l-RT-fho" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="p3c-vI-utQ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="All Semesters" id="Cqe-ue-nG9">
+                        <barButtonItem key="backBarButtonItem" title=" " id="f0o-Sk-JuT"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="4yp-Me-Y1D">
+                            <connections>
+                                <action selector="createObject:" destination="BYZ-38-t0r" id="YIh-fp-GAx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="477" y="162"/>
+        </scene>
+        <!--[Specific Semester]-->
+        <scene sceneID="RyL-e0-bTb">
+            <objects>
+                <viewController storyboardIdentifier="EditSemesterView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WdP-Pa-bRB" customClass="EditSemesterView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hlY-nY-cc8"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Tb-A4-e0w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="It3-yu-tSt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D6U-N8-mkx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayCell" id="hTW-tE-ygn">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hTW-tE-ygn" id="bEE-Hm-uxW">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WdP-Pa-bRB" id="hpo-eI-u73"/>
+                                    <outlet property="delegate" destination="WdP-Pa-bRB" id="XXR-Ur-ERI"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="D6U-N8-mkx" secondAttribute="trailing" id="4sD-VH-wRp"/>
+                            <constraint firstItem="D6U-N8-mkx" firstAttribute="leading" secondItem="It3-yu-tSt" secondAttribute="leading" id="Lkr-HG-JZq"/>
+                            <constraint firstItem="D6U-N8-mkx" firstAttribute="bottom" secondItem="4Tb-A4-e0w" secondAttribute="top" id="iWn-ac-DRz"/>
+                            <constraint firstItem="D6U-N8-mkx" firstAttribute="top" secondItem="It3-yu-tSt" secondAttribute="top" id="wzJ-94-LHv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="[Specific Semester]" id="izJ-Hj-g5I"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Lh-hH-DTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2245" y="167"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jru-N2-SkL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K6p-aA-Q3x" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M9Z-OY-H4b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Asc-nl-N1b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fu-E2-irZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-335" y="162"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wgk-s7-1zY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iPu-pe-pTb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iy2-1B-Pyq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WdP-Pa-bRB" kind="relationship" relationship="rootViewController" id="jeO-72-Gj1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLs-q7-kvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433" y="167"/>
         </scene>
     </scenes>
 </document>

@@ -100,8 +100,8 @@
 				C5F8A6351C977B9600291453 /* IntroView.swift */,
 				C5F8A6371C977B9F00291453 /* SelectNewView.swift */,
 				C5F8A6391C977BAA00291453 /* BrowserView.swift */,
-				C5F8A63B1C977BB300291453 /* EditSemesterView.swift */,
 				C5F8A63F1C977BC200291453 /* SettingView.swift */,
+				C5F8A63B1C977BB300291453 /* EditSemesterView.swift */,
 				C5F8A6411C977BC900291453 /* SemesterView.swift */,
 				C5F8A63D1C977BBB00291453 /* CourseView.swift */,
 				C57CA68C1C95279E00863812 /* AboutView.swift */,
@@ -152,6 +152,7 @@
 				TargetAttributes = {
 					C57CA6861C95279E00863812 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 7W47R8EV79;
 					};
 				};
 			};
@@ -313,11 +314,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Semestr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nextseto.Semestr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -325,11 +329,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Semestr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nextseto.Semestr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

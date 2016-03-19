@@ -58,8 +58,7 @@ extension CoreData
     {
         do
         {
-            let results = try self.managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "Semester"))
-            return results as! [Semester]
+            return try self.managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "Semester")) as! [Semester]
         }
         catch let error as NSError
         {
@@ -67,11 +66,6 @@ extension CoreData
             return []
         }
     }
-    
-    
-    
-    
-    
     
     
     

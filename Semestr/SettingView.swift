@@ -15,7 +15,7 @@ class SettingView: UIViewController
         
         
     }
-    
+
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }

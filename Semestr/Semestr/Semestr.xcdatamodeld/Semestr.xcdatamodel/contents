@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
     <entity name="Course" representedClassName=".Course" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="room" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,12 +16,13 @@
         <relationship name="semester" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Semester" inverseName="days" inverseEntity="Semester" syncable="YES"/>
     </entity>
     <entity name="Semester" representedClassName=".Semester" syncable="YES">
+        <attribute name="imported" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="semester" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="-10890" positionY="-828" width="128" height="133"/>
+        <element name="Course" positionX="-10890" positionY="-828" width="128" height="148"/>
         <element name="Day" positionX="-10892" positionY="-1035" width="128" height="103"/>
-        <element name="Semester" positionX="-10890" positionY="-1188" width="128" height="73"/>
+        <element name="Semester" positionX="-10890" positionY="-1188" width="128" height="88"/>
     </elements>
 </model>

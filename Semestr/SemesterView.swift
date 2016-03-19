@@ -1,9 +1,10 @@
 
 // Developer: Warren Seto
 //      File: SemesterView.swift
-//   Purpose: Displays various classes for each day in a semester
+//   Purpose: Displays a list of all saved semesters
 
 import UIKit
+import CoreData
 
 class SemesterView: UIViewController
 {

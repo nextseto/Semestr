@@ -8,7 +8,7 @@ import CoreData
 
 public final class CoreData
 {
-    /** Application's Main CoreData Instance (Singleton)*/
+    /** Application's Main CoreData Instance (Singleton) */
     static let app = CoreData()
     
     internal lazy var applicationDocumentsDirectory: NSURL =

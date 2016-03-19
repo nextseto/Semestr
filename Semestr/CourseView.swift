@@ -1,11 +1,11 @@
 
 // Developer: Warren Seto
-//      File: ListSemesterView.swift
-//   Purpose: Displays a list of all saved semesters
+//      File: CourseView.swift
+//   Purpose: Displays various classes for each day in a semester
 
 import UIKit
 
-class ListSemesterView: UIViewController
+class CourseView: UIViewController
 {
     override func viewDidLoad()
     {

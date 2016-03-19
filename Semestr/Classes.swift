@@ -9,26 +9,16 @@ import CoreData
 /** A course has a: name, startTime, endTime, location, room and day. Each course has a day assigned to it. */
 class Course: NSManagedObject
 {
-    @NSManaged var endTime: String?
+    @NSManaged var name: String?
     @NSManaged var location: String?
-    @NSManaged var name: String?
     @NSManaged var room: String?
-    @NSManaged var startTime: String?
     @NSManaged var imageName: String?
-    
-    @NSManaged var day: Day?
-    
-    
-}
-
-/** A Day has a: name, index (of the week), courses and is associated to a specific semester. Each Day has many courses.*/
-class Day: NSManagedObject
-{
-    @NSManaged var index: Int16
-    @NSManaged var name: String?
-    @NSManaged var courses: NSSet?
+    @NSManaged var startTime: String?
+    @NSManaged var endTime: String?
+    @NSManaged var day: String?
     
     @NSManaged var semester: Semester?
+
     
 }
 
@@ -37,8 +27,7 @@ class Semester: NSManagedObject
 {
     @NSManaged var name: String?
     @NSManaged var imported: Bool
-    
-    @NSManaged var days: NSSet?
+    @NSManaged var courses: NSSet?
     
     
 }
@@ -54,6 +43,22 @@ extension CoreData
         save()
     }
     
+    internal func addNewCourse( semester semester:Semester, _  inputName:String, _  inputLocation:String, _  inputRoom:String, _ inputImageName:String, _ inputStartTime:String, _ inputEndTime:String, _ inputDay:String)
+    {
+        let tempCourse:Course = NSEntityDescription.insertNewObjectForEntityForName("Course", inManagedObjectContext: self.managedObjectContext) as! Course
+        
+        tempCourse.name = inputName
+        tempCourse.location = inputLocation
+        tempCourse.room = inputRoom
+        tempCourse.imageName = inputImageName
+        tempCourse.startTime = inputStartTime
+        tempCourse.endTime = inputEndTime
+        tempCourse.day = inputDay
+        tempCourse.semester = semester
+        
+        save()
+    }
+    
     internal func getAllSemesters() -> [Semester]
     {
         do
@@ -65,6 +70,12 @@ extension CoreData
             print("Could not fetch \(error), \(error.userInfo)")
             return []
         }
+    }
+    
+    internal func deleteObject(inputObject:NSManagedObject)
+    {
+        managedObjectContext.deleteObject(inputObject)
+        save()
     }
     
     

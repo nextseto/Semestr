@@ -51,6 +51,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="N3l-RT-fho" id="sdO-uo-c9E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,6 +99,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="[Specific Semester]" id="izJ-Hj-g5I"/>
+                    <connections>
+                        <outlet property="tableView" destination="D6U-N8-mkx" id="wxM-lh-XMW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lh-hH-DTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

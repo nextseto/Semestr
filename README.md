@@ -13,7 +13,7 @@
 - E
 - F
 - G
-https://github.com/nextseto/Semestr/wiki
+
 ## Dependencies
 - [folding-cell](https://github.com/Ramotion/folding-cell): FoldingCell is an expanding content cell inspired by folding paper material
 - [XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip): A Container View Controller that allows us to switch easily among a collection of view controllers. Pan gesture can be used to move on to next or previous view controller. It shows a interactive indicator of the current, previous, next child view controllers.
@@ -21,8 +21,6 @@ https://github.com/nextseto/Semestr/wiki
 ## Wiki
 
 [Wiki is located here](https://github.com/nextseto/Semestr/wiki)
-
-Wiki is located here.
 
 ## Documentation
 

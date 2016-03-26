@@ -10,6 +10,8 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     
+    var flag = false
+    
     lazy var coreData: NSFetchedResultsController =
     {
         let fetch = NSFetchRequest(entityName: "Semester") // Get all Semester Objects
@@ -30,22 +32,38 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     @IBAction func createObject(sender: AnyObject)
     {
-        CoreData.app.addNewSemester("Spring 2014")
+        flag = !flag
         
+        if flag { (sender as! UIBarButtonItem).title = "Done" }
+        else { (sender as! UIBarButtonItem).title = "Edit" }
         
+        tableView.beginUpdates()
         
+        for rowIndex in tableView.indexPathsForVisibleRows!
+        {
+            let cell = tableView.cellForRowAtIndexPath(rowIndex)
+            
+            if flag
+            {
+                cell!.accessoryType = .DisclosureIndicator
+            }
+            
+            else
+            {
+                if ((coreData.objectAtIndexPath(rowIndex) as! Semester)).selected
+                {
+                    cell?.accessoryType = .Checkmark
+                }
+                    
+                else
+                {
+                    cell?.accessoryType = .None
+                }
+            }
+        }
         
+        tableView.endUpdates()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -67,6 +85,22 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
                 }
             break;
             
+            case .Update:
+                if let indexPath = indexPath
+                {
+                    if ((coreData.objectAtIndexPath(indexPath) as! Semester)).selected
+                    {
+                        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+                    }
+                        
+                    else
+                    {
+                        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+                    }
+                }
+            
+            break;
+            
             case .Delete:
                 if let indexPath = indexPath
                 {
@@ -83,16 +117,37 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     /* UITableViewDataSource AND UITableViewDelegate */
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if (section == 0)
+        {
+            return "My Semesters"
+        }
+            return "Friend's Semesters"
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        CoreData.app.addNewCourse(semester: coreData.objectAtIndexPath(indexPath) as! Semester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
-        
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let view = storyboard!.instantiateViewControllerWithIdentifier("EditSemesterView") as! EditSemesterView
-        view.selectedSemester = coreData.objectAtIndexPath(indexPath) as! Semester
-        navigationController?.pushViewController(view, animated: true)
+        let temp = coreData.objectAtIndexPath(indexPath) as! Semester
+        
+        if !flag
+        {
+            temp.selected = !temp.selected
+            CoreData.app.save()
+        }
+        
+        else
+        {
+            let view = storyboard!.instantiateViewControllerWithIdentifier("EditSemesterView") as! EditSemesterView
+            view.selectedSemester = temp
+            navigationController?.pushViewController(view, animated: true)
+        }
+        
+
+        //CoreData.app.addNewCourse(semester: coreData.objectAtIndexPath(indexPath) as! Semester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
+        
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
@@ -107,7 +162,13 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
     {
         let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SemesterCell")!
         
-        tablecell.textLabel?.text = coreData.objectAtIndexPath(indexPath).name
+        let temp = coreData.objectAtIndexPath(indexPath) as! Semester
+        
+        tablecell.textLabel?.text = temp.name
+        
+        if flag {               tablecell.accessoryType = .DisclosureIndicator  }
+        else if temp.selected { tablecell.accessoryType = .Checkmark            }
+        else {                  tablecell.accessoryType = .None                 }
         
         return tablecell
     }

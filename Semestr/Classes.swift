@@ -26,6 +26,7 @@ class Course: NSManagedObject
 class Semester: NSManagedObject
 {
     @NSManaged var name: String?
+    @NSManaged var selected: Bool
     @NSManaged var imported: Bool
     @NSManaged var courses: NSSet?
     

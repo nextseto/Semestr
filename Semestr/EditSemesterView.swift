@@ -88,9 +88,12 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("DayCell")!
+        let tablecell = tableView.dequeueReusableCellWithIdentifier("CourseCell")! as UITableViewCell
         
-        tablecell.textLabel?.text = coreData.objectAtIndexPath(indexPath).name
+        let temp = coreData.objectAtIndexPath(indexPath) as! Course
+        tablecell.textLabel?.text = temp.name
+        tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
+        //tablecell.imageView?.image = UIImage(named: "FORCINA")
         
         return tablecell
     }
@@ -115,3 +118,8 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }
+
+
+
+
+

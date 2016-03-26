@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Course" representedClassName=".Course" syncable="YES">
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,10 +13,11 @@
     <entity name="Semester" representedClassName=".Semester" syncable="YES">
         <attribute name="imported" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="semester" inverseEntity="Course" syncable="YES"/>
     </entity>
     <elements>
         <element name="Course" positionX="-10890" positionY="-828" width="128" height="163"/>
-        <element name="Semester" positionX="-10890" positionY="-1188" width="128" height="88"/>
+        <element name="Semester" positionX="-11214" positionY="-853" width="128" height="103"/>
     </elements>
 </model>

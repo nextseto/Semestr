@@ -20,11 +20,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SemesterCell" id="SwU-HF-cxf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SemesterCell" editingAccessoryType="disclosureIndicator" id="SwU-HF-cxf">
                                         <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SwU-HF-cxf" id="yp1-uz-Vr7">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="561" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -47,7 +47,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="f0o-Sk-JuT"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="4yp-Me-Y1D">
                             <connections>
-                                <action selector="createObject:" destination="BYZ-38-t0r" id="YIh-fp-GAx"/>
+                                <action selector="toggleEdit:" destination="BYZ-38-t0r" id="zXl-mq-2C7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

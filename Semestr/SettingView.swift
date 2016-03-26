@@ -6,15 +6,33 @@ import UIKit
 
 class SettingView: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    
+    /* ---- Variables ---- */
+    
+    let headerText:[String] = ["Schedule", "Feedback", ""]
+    let mainText:[[String]] = [["All Semester", "Add Semester"], ["Send Feedback", "Please Rate Semestr"], ["About"]]
+    let footerText:[String] = ["", "Semestr will never interrupt you for ratings.", ""]
+    
+    /* ---- ViewController Code ---- */
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         
         
-        
         //self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
+    
+    @IBAction func closeViewController(sender: AnyObject)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+    
+    
+    /* ---- UITableView Code ---- */
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -49,82 +67,21 @@ class SettingView: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    {
-        if (section == 0)
-        {
-            return "Schedule"
-        }
-        
-        else if (section == 1)
-        {
-            return "Feedback"
-        }
-            return ""
-    }
-    
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String?
-    {
-        if (section == 1)
-        {
-            return "Semestr will never interrupt you for ratings."
-        }
-            return ""
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return 3 }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        switch (section)
-        {
-            case 0, 1:
-                return 2
-            case 2:
-                return 1
-            default: return 0
-        }
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("nameCell")! as UITableViewCell
         
-        switch (indexPath.section)
-        {
-            case 0:
-                if (indexPath.row == 0)
-                {
-                    cell.textLabel?.text = "All Semesters"
-                }
-                else
-                {
-                    cell.textLabel?.text = "Add Semesters"
-                }
-            case 1:
-                if (indexPath.row == 0)
-                {
-                    cell.textLabel?.text = "Send Feedback"
-                }
-                else
-                {
-                    cell.textLabel?.text = "Please Rate Semestr"
-                }
-            case 2:
-                cell.textLabel?.text = "About"
-            
-            default: break
-        }
-
+        cell.textLabel?.text = mainText[indexPath.section][indexPath.row]
         
         return cell
     }
     
-    @IBAction func closeViewController(sender: AnyObject)
-    {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return headerText[section]}
     
-    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? { return footerText[section] }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return mainText.count }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return mainText[section].count }
 }
 

@@ -8,6 +8,9 @@ import CoreData
 
 class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
 {
+    
+    /* ---- Variables ---- */
+    
     @IBOutlet weak var tableView: UITableView!
     
     var flag = false
@@ -22,21 +25,40 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
         return control
     }()
     
+    
+    /* ---- ViewController Code ---- */
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         do { try self.coreData.performFetch() }
         catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
+        
+        
     }
     
-    @IBAction func createObject(sender: AnyObject)
+    @IBAction func toggleEdit(sender: AnyObject)
     {
         flag = !flag
         
-        if flag { (sender as! UIBarButtonItem).title = "Done" }
-        else { (sender as! UIBarButtonItem).title = "Edit" }
+        if flag
+        {
+            (sender as! UIBarButtonItem).title = "Done"
+            (sender as! UIBarButtonItem).style = .Done
+        }
         
+        else
+        {
+            (sender as! UIBarButtonItem).title = "Edit"
+            (sender as! UIBarButtonItem).style = .Plain
+        }
+        
+        toggleEditMode()
+    }
+    
+    func toggleEditMode()
+    {
         tableView.beginUpdates()
         
         for rowIndex in tableView.indexPathsForVisibleRows!
@@ -47,7 +69,7 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
             {
                 cell!.accessoryType = .DisclosureIndicator
             }
-            
+                
             else
             {
                 if ((coreData.objectAtIndexPath(rowIndex) as! Semester)).selected
@@ -67,12 +89,10 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     
     
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+
     
-    /* NSFetchedResultsControllerDelegate */
-    
-    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
+    /* ---- NSFetchedResultsController Code ---- */
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
     {
@@ -83,7 +103,6 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
                 {
                     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }
-            break;
             
             case .Update:
                 if let indexPath = indexPath
@@ -99,14 +118,11 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
                     }
                 }
             
-            break;
-            
             case .Delete:
                 if let indexPath = indexPath
                 {
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }
-            break;
             
             default:
                 print("Not Implemented - \(type)")
@@ -114,21 +130,18 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
         }
     }
     
+    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
     
-    /* UITableViewDataSource AND UITableViewDelegate */
+    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    {
-        if (section == 0)
-        {
-            return "My Semesters"
-        }
-            return "Friend's Semesters"
-    }
+    
+    /* ---- UITableView Code ---- */
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        CoreData.app.addNewCourse(semester: coreData.objectAtIndexPath(indexPath) as! Semester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
         
         let temp = coreData.objectAtIndexPath(indexPath) as! Semester
         
@@ -137,24 +150,14 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
             temp.selected = !temp.selected
             CoreData.app.save()
         }
-        
+            
         else
         {
+            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .DisclosureIndicator
+            
             let view = storyboard!.instantiateViewControllerWithIdentifier("EditSemesterView") as! EditSemesterView
             view.selectedSemester = temp
             navigationController?.pushViewController(view, animated: true)
-        }
-        
-
-        //CoreData.app.addNewCourse(semester: coreData.objectAtIndexPath(indexPath) as! Semester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
-        
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        if (editingStyle == .Delete)
-        {
-            CoreData.app.deleteObject(coreData.objectAtIndexPath(indexPath) as! NSManagedObject)
         }
     }
     
@@ -172,25 +175,41 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         return tablecell
     }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if (section == 0)
+        {
+            return "My Semesters"
+        }
+        return "Friend's Semesters"
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if (editingStyle == .Delete)
+        {
+            CoreData.app.deleteObject(coreData.objectAtIndexPath(indexPath) as! NSManagedObject)
+        }
+    }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        if let sections = coreData.sections {
+        if let sections = coreData.sections
+        {
             return sections.count
         }
-        
-        return 0
+            return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = coreData.sections {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if let sections = coreData.sections
+        {
             let sectionInfo = sections[section]
             return sectionInfo.numberOfObjects
         }
-        
-        return 0
+            return 0
     }
-    
-    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }
 

@@ -8,6 +8,9 @@ import CoreData
 
 class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
 {
+    
+    /* ---- Variables ---- */
+    
     @IBOutlet weak var tableView: UITableView!
     
     var selectedSemester:Semester!
@@ -23,6 +26,9 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
         return control
     }()
     
+    
+    /* ---- ViewController Code ---- */
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -31,16 +37,16 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
         
         do { try self.coreData.performFetch() }
         catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
+        
+        
     }
     
     
     
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
     
-    /* NSFetchedResultsControllerDelegate */
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
+    /* ---- NSFetchedResultsController Code ---- */
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
     {
@@ -51,31 +57,42 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
                 {
                     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }
-            break;
             
             case .Delete:
                 if let indexPath = indexPath
                 {
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }
-            break;
             
             default:
                 print("Not Implemented - \(type)")
-            break;
         }
     }
     
+    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
     
-    /* UITableViewDataSource AND UITableViewDelegate */
+    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
+    
+    
+    /* ---- UITableView Code ---- */
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         
         
         
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("CourseCell")!
         
+        let temp = coreData.objectAtIndexPath(indexPath) as! Course
+        tablecell.textLabel?.text = temp.name
+        tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
+        //tablecell.imageView?.image = UIImage(named: "FORCINA")
         
+        return tablecell
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
@@ -86,37 +103,24 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let tablecell = tableView.dequeueReusableCellWithIdentifier("CourseCell")! as UITableViewCell
-        
-        let temp = coreData.objectAtIndexPath(indexPath) as! Course
-        tablecell.textLabel?.text = temp.name
-        tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
-        //tablecell.imageView?.image = UIImage(named: "FORCINA")
-        
-        return tablecell
-    }
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        if let sections = coreData.sections {
+        if let sections = coreData.sections
+        {
             return sections.count
         }
-        
-        return 0
+            return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = coreData.sections {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if let sections = coreData.sections
+        {
             let sectionInfo = sections[section]
             return sectionInfo.numberOfObjects
         }
-        
-        return 0
+            return 0
     }
-    
-    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }
 
 

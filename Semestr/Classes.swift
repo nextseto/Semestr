@@ -44,7 +44,7 @@ extension CoreData
         save()
     }
     
-    internal func addNewCourse( semester semester:Semester, _  inputName:String, _  inputLocation:String, _  inputRoom:String, _ inputImageName:String, _ inputStartTime:String, _ inputEndTime:String, _ inputDay:String)
+    internal func addNewCourse(semester semester:Semester, _  inputName:String, _  inputLocation:String, _  inputRoom:String, _ inputImageName:String, _ inputStartTime:String, _ inputEndTime:String, _ inputDay:String)
     {
         let tempCourse:Course = NSEntityDescription.insertNewObjectForEntityForName("Course", inManagedObjectContext: self.managedObjectContext) as! Course
         

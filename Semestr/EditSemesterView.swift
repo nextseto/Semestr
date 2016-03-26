@@ -6,7 +6,7 @@
 import UIKit
 import CoreData
 
-class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
+final class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
 {
     
     /* ---- Variables ---- */
@@ -37,6 +37,10 @@ class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDele
         
         do { try self.coreData.performFetch() }
         catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
+        
+        
+        
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
         
         
     }

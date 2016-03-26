@@ -5,7 +5,7 @@
 
 import UIKit
 
-class SelectNewView: UIViewController
+final class SelectNewView: UIViewController
 {
     override func viewDidLoad()
     {

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class BrowserView: UIViewController
+final class BrowserView: UIViewController
 {
     override func viewDidLoad()
     {

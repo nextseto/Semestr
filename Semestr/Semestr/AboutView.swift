@@ -5,7 +5,7 @@
 
 import UIKit
 
-class AboutView: UIViewController
+final class AboutView: UIViewController
 {
     override func viewDidLoad()
     {

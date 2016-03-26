@@ -6,7 +6,7 @@
 import UIKit
 import CoreData
 
-class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
+final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
 {
     
     /* ---- Variables ---- */
@@ -41,6 +41,7 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
     @IBAction func toggleEdit(sender: AnyObject)
     {
         flag = !flag
+        toggleEditMode()
         
         if flag
         {
@@ -53,8 +54,6 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
             (sender as! UIBarButtonItem).title = "Edit"
             (sender as! UIBarButtonItem).style = .Plain
         }
-        
-        toggleEditMode()
     }
     
     func toggleEditMode()
@@ -107,14 +106,17 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
             case .Update:
                 if let indexPath = indexPath
                 {
-                    if ((coreData.objectAtIndexPath(indexPath) as! Semester)).selected
+                    if !flag
                     {
-                        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-                    }
-                        
-                    else
-                    {
-                        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+                        if ((coreData.objectAtIndexPath(indexPath) as! Semester)).selected
+                        {
+                            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+                        }
+                            
+                        else
+                        {
+                            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+                        }
                     }
                 }
             
@@ -124,9 +126,7 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }
             
-            default:
-                print("Not Implemented - \(type)")
-            break;
+            default: break
         }
     }
     
@@ -141,8 +141,6 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        CoreData.app.addNewCourse(semester: coreData.objectAtIndexPath(indexPath) as! Semester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
-        
         let temp = coreData.objectAtIndexPath(indexPath) as! Semester
         
         if !flag
@@ -153,7 +151,7 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
             
         else
         {
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .DisclosureIndicator
+            //tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .DisclosureIndicator
             
             let view = storyboard!.instantiateViewControllerWithIdentifier("EditSemesterView") as! EditSemesterView
             view.selectedSemester = temp
@@ -169,9 +167,20 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         tablecell.textLabel?.text = temp.name
         
-        if flag {               tablecell.accessoryType = .DisclosureIndicator  }
-        else if temp.selected { tablecell.accessoryType = .Checkmark            }
-        else {                  tablecell.accessoryType = .None                 }
+        if flag
+        {
+            tablecell.accessoryType = .DisclosureIndicator
+        }
+            
+        else if temp.selected
+        {
+            tablecell.accessoryType = .Checkmark
+        }
+            
+        else
+        {
+            tablecell.accessoryType = .None
+        }
         
         return tablecell
     }
@@ -182,7 +191,7 @@ class SemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate
         {
             return "My Semesters"
         }
-        return "Friend's Semesters"
+            return "Friend's Semesters"
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)

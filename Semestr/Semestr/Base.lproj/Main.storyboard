@@ -44,8 +44,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All Semesters" id="Cqe-ue-nG9">
-                        <barButtonItem key="backBarButtonItem" title=" " id="f0o-Sk-JuT"/>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="4yp-Me-Y1D">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4yp-Me-Y1D">
                             <connections>
                                 <action selector="toggleEdit:" destination="BYZ-38-t0r" id="zXl-mq-2C7"/>
                             </connections>
@@ -76,11 +75,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" textLabel="tPj-Mc-fR7" detailTextLabel="2H5-ke-sGx" rowHeight="85" style="IBUITableViewCellStyleSubtitle" id="oxm-uV-BNN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CourseCell" textLabel="tPj-Mc-fR7" detailTextLabel="2H5-ke-sGx" rowHeight="85" style="IBUITableViewCellStyleSubtitle" id="oxm-uV-BNN">
                                         <rect key="frame" x="0.0" y="92" width="600" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oxm-uV-BNN" id="sig-Ad-6Ug">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tPj-Mc-fR7">

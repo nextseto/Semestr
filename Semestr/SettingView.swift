@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SettingView: UIViewController, UITableViewDelegate, UITableViewDataSource
+final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
     /* ---- Variables ---- */
@@ -50,6 +50,9 @@ class SettingView: UIViewController, UITableViewDelegate, UITableViewDataSource
                 else
                 {
                     print("Add Semester")
+                    
+                    CoreData.app.addNewSemester("Spring 201\(arc4random_uniform(9) + 0)")
+                    
                 }
             case 1:
                 if (indexPath.row == 0)
@@ -69,7 +72,7 @@ class SettingView: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("nameCell")! as UITableViewCell
+        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("nameCell")!
         
         cell.textLabel?.text = mainText[indexPath.section][indexPath.row]
         

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class IntroView: UIViewController
+final class IntroView: UIViewController
 {
     override func viewDidLoad()
     {

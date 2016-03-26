@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseView: UIViewController
+final class CourseView: UIViewController
 {
     override func viewDidLoad()
     {

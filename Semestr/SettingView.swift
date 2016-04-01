@@ -9,9 +9,9 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     /* ---- Variables ---- */
     
-    let headerText:[String] = ["Schedule", "Feedback", ""]
-    let mainText:[[String]] = [["All Semester", "Add Semester"], ["Send Feedback", "Please Rate Semestr"], ["About"]]
-    let footerText:[String] = ["", "Semestr will never interrupt you for ratings.", ""]
+    let headerText:[String] = ["Schedule", "Feedback", ""],
+        mainText:[[String]] = [["All Semester", "Add Semester"], ["Send Feedback", "Please Rate Semestr"], ["About"]],
+        footerText:[String] = ["", "Semestr will never interrupt you for ratings.", ""]
     
     /* ---- ViewController Code ---- */
     

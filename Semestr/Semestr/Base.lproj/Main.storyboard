@@ -44,6 +44,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All Semesters" id="Cqe-ue-nG9">
+                        <barButtonItem key="backBarButtonItem" title=" " id="zLg-ov-pDt"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="4yp-Me-Y1D">
                             <connections>
                                 <action selector="toggleEdit:" destination="BYZ-38-t0r" id="zXl-mq-2C7"/>
@@ -162,7 +163,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ueh-ZJ-uje">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="nameCell" id="zxK-aO-F81">
                                         <rect key="frame" x="0.0" y="114" width="600" height="44"/>

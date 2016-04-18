@@ -23,7 +23,9 @@ final class SelectNewView: UIViewController, UITableViewDelegate, UITableViewDat
     {
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         
-        
+        let view = storyboard!.instantiateViewControllerWithIdentifier("BrowserView") as! BrowserView
+        view.parseSite = pictureArray[indexPath.row]
+        presentViewController(view, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell

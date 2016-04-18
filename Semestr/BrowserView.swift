@@ -8,14 +8,14 @@ import UIKit
 final class BrowserView: UIViewController
 {
     
-    
+    var parseSite:String!
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        
+        print(parseSite)
         
         
     }

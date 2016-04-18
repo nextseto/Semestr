@@ -39,9 +39,12 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
         
         
-        
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
-        
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 215", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Monday")
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 315", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Wednesday")
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 515", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Thursday")
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 615", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Friday")
+        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 715", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Saturday")
         
     }
     

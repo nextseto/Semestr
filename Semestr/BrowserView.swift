@@ -7,6 +7,10 @@ import UIKit
 
 final class BrowserView: UIViewController
 {
+    
+    
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -16,6 +20,8 @@ final class BrowserView: UIViewController
         
     }
     
+    
+
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }

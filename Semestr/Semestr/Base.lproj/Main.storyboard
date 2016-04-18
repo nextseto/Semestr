@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--All Semesters-->
+        <!--List all Semesters-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="SemesterView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SemesterView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SemesterView" title="List all Semesters" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SemesterView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -58,12 +58,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="477" y="162"/>
+            <point key="canvasLocation" x="1493" y="-455"/>
         </scene>
-        <!--[Specific Semester]-->
+        <!--List Courses for a Semester-->
         <scene sceneID="RyL-e0-bTb">
             <objects>
-                <viewController storyboardIdentifier="EditSemesterView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WdP-Pa-bRB" customClass="EditSemesterView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditSemesterView" title="List Courses for a Semester" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WdP-Pa-bRB" customClass="EditSemesterView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hlY-nY-cc8"/>
                         <viewControllerLayoutGuide type="bottom" id="4Tb-A4-e0w"/>
@@ -125,12 +125,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lh-hH-DTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2154" y="162"/>
+            <point key="canvasLocation" x="2271" y="-455"/>
         </scene>
-        <!--Monday-->
+        <!--List Courses per Day-->
         <scene sceneID="0VH-SJ-RbH">
             <objects>
-                <viewController storyboardIdentifier="CourseView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ub4-L1-iWq" customClass="CourseView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseView" title="List Courses per Day" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ub4-L1-iWq" customClass="CourseView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vdf-sD-Fzv"/>
                         <viewControllerLayoutGuide type="bottom" id="be6-aQ-BDv"/>
@@ -195,12 +195,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Si-g6-Ipx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="477" y="-573"/>
+            <point key="canvasLocation" x="-15" y="-455"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ddj-Np-zjl">
             <objects>
-                <viewController storyboardIdentifier="SettingView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Di-EK-Wyf" customClass="SettingView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingView" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Di-EK-Wyf" customClass="SettingView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pqz-gW-b4L"/>
                         <viewControllerLayoutGuide type="bottom" id="P4r-nZ-omo"/>
@@ -247,12 +247,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q8U-31-yQM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2154" y="-573"/>
+            <point key="canvasLocation" x="721" y="-455"/>
         </scene>
-        <!--Edit Course View-->
+        <!--Add Semester-->
+        <scene sceneID="TNU-De-Qw4">
+            <objects>
+                <viewController storyboardIdentifier="SelectNewView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wwp-E9-gHh" customClass="SelectNewView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YUq-at-ikX"/>
+                        <viewControllerLayoutGuide type="bottom" id="wNU-iB-PFP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z9K-Gn-cxL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xe7-HB-F3U">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="picCell" rowHeight="100" id="nOD-JG-QES" customClass="PictureCell" customModule="Semestr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nOD-JG-QES" id="HlL-fa-Abf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PAWS" translatesAutoresizingMaskIntoConstraints="NO" id="2IR-ap-t2E">
+                                                    <rect key="frame" x="240" y="5" width="120" height="90"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2IR-ap-t2E" firstAttribute="top" secondItem="HlL-fa-Abf" secondAttribute="topMargin" constant="-3" id="61v-Rl-wzc"/>
+                                                <constraint firstItem="2IR-ap-t2E" firstAttribute="centerY" secondItem="HlL-fa-Abf" secondAttribute="centerY" id="rOh-7x-lsc"/>
+                                                <constraint firstItem="2IR-ap-t2E" firstAttribute="centerX" secondItem="HlL-fa-Abf" secondAttribute="centerX" id="unL-02-HeC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="picture" destination="2IR-ap-t2E" id="vom-5r-FLY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="wwp-E9-gHh" id="irg-9u-43h"/>
+                                    <outlet property="delegate" destination="wwp-E9-gHh" id="qOs-9i-dHq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xe7-HB-F3U" firstAttribute="bottom" secondItem="wNU-iB-PFP" secondAttribute="top" id="JQe-eD-qvb"/>
+                            <constraint firstAttribute="trailing" secondItem="xe7-HB-F3U" secondAttribute="trailing" id="V7o-Cs-TXL"/>
+                            <constraint firstItem="xe7-HB-F3U" firstAttribute="leading" secondItem="z9K-Gn-cxL" secondAttribute="leading" id="e9a-Gs-npO"/>
+                            <constraint firstItem="xe7-HB-F3U" firstAttribute="top" secondItem="z9K-Gn-cxL" secondAttribute="top" id="z49-nl-LIX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Semester" id="xSo-R4-dOR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjY-VM-uUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2984" y="-455"/>
+        </scene>
+        <!--Edit details for a Course-->
         <scene sceneID="ANn-rs-8v8">
             <objects>
-                <viewController storyboardIdentifier="EditCourseView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rt3-RQ-j0Q" customClass="EditCourseView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditCourseView" title="Edit details for a Course" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rt3-RQ-j0Q" customClass="EditCourseView" customModule="Semestr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ffT-3n-QrU"/>
                         <viewControllerLayoutGuide type="bottom" id="xkF-7l-dW6"/>
@@ -335,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="niH-FI-9ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2908" y="-573"/>
+            <point key="canvasLocation" x="3728" y="-455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jru-N2-SkL">
@@ -353,7 +411,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fu-E2-irZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335" y="162"/>
+            <point key="canvasLocation" x="1493" y="-1201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wgk-s7-1zY">
@@ -371,7 +429,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLs-q7-kvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1433" y="167"/>
+            <point key="canvasLocation" x="2271" y="-1201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IdG-Oe-ZcF">
@@ -389,7 +447,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVr-cw-Y2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335" y="-573"/>
+            <point key="canvasLocation" x="-15" y="-1201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qCq-RX-m1o">
@@ -407,7 +465,28 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qc0-Ru-g4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1433" y="-573"/>
+            <point key="canvasLocation" x="721" y="-1201"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Pso-PC-vTH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="caD-Fd-tjN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hrd-Ko-N5S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wwp-E9-gHh" kind="relationship" relationship="rootViewController" id="pZ2-pu-T4V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XaN-I9-pxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2984" y="-1201"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PAWS" width="120" height="68"/>
+    </resources>
 </document>

@@ -51,7 +51,8 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
                 {
                     print("Add Semester")
                     
-                    CoreData.app.addNewSemester("Spring 201\(arc4random_uniform(9) + 0)")
+                    navigationController?.pushViewController(storyboard.instantiateViewControllerWithIdentifier("SelectNewView"), animated: true)
+                    //CoreData.app.addNewSemester("Spring 201\(arc4random_uniform(9) + 0)")
                     
                 }
             case 1:

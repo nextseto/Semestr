@@ -85,6 +85,8 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        
         let view = storyboard!.instantiateViewControllerWithIdentifier("EditCourseView") as! EditCourseView
         view.selectedCourse = coreData.objectAtIndexPath(indexPath) as! Course
         presentViewController(view, animated: true, completion: nil)

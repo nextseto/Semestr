@@ -13,6 +13,7 @@
 		C57CA6931C95279E00863812 /* Semestr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C57CA6911C95279E00863812 /* Semestr.xcdatamodeld */; };
 		C57CA6951C95279E00863812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57CA6941C95279E00863812 /* Assets.xcassets */; };
 		C57CA6981C95279E00863812 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57CA6961C95279E00863812 /* LaunchScreen.storyboard */; };
+		C5E76ACA1CC47A24000C7294 /* EditCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E76AC91CC47A24000C7294 /* EditCourseView.swift */; };
 		C5F8A6361C977B9600291453 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6351C977B9600291453 /* IntroView.swift */; };
 		C5F8A6381C977B9F00291453 /* SelectNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6371C977B9F00291453 /* SelectNewView.swift */; };
 		C5F8A63A1C977BAA00291453 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F8A6391C977BAA00291453 /* BrowserView.swift */; };
@@ -33,6 +34,7 @@
 		C57CA6941C95279E00863812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C57CA6971C95279E00863812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C57CA6991C95279E00863812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5E76AC91CC47A24000C7294 /* EditCourseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCourseView.swift; sourceTree = "<group>"; };
 		C5F8A6351C977B9600291453 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		C5F8A6371C977B9F00291453 /* SelectNewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectNewView.swift; sourceTree = "<group>"; };
 		C5F8A6391C977BAA00291453 /* BrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				C5F8A6391C977BAA00291453 /* BrowserView.swift */,
 				C5F8A63F1C977BC200291453 /* SettingView.swift */,
 				C5F8A63B1C977BB300291453 /* EditSemesterView.swift */,
+				C5E76AC91CC47A24000C7294 /* EditCourseView.swift */,
 				C5F8A6411C977BC900291453 /* SemesterView.swift */,
 				C5F8A63D1C977BBB00291453 /* CourseView.swift */,
 				C57CA68C1C95279E00863812 /* AboutView.swift */,
@@ -208,6 +211,7 @@
 				C57CA68B1C95279E00863812 /* AppDelegate.swift in Sources */,
 				C57CA6931C95279E00863812 /* Semestr.xcdatamodeld in Sources */,
 				C5F8A63C1C977BB300291453 /* EditSemesterView.swift in Sources */,
+				C5E76ACA1CC47A24000C7294 /* EditCourseView.swift in Sources */,
 				C5F8A63A1C977BAA00291453 /* BrowserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

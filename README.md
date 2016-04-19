@@ -6,26 +6,31 @@
 **Semestr** keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines.
 
 ## Features
-- A
-- B
-- C
-- D
-- E
-- F
-- G
+- Can add and delete courses for a named semester
+- Can toggle to see specific courses in the week
+- Can pull PAWS data and add course information into the application
 
-## Dependencies
-- [folding-cell](https://github.com/Ramotion/folding-cell): FoldingCell is an expanding content cell inspired by folding paper material
-- [XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip): A Container View Controller that allows us to switch easily among a collection of view controllers. Pan gesture can be used to move on to next or previous view controller. It shows a interactive indicator of the current, previous, next child view controllers.
+## Install
+##### Build Requirements:
+- A Macintosh running 10.11 or greater
+- Xcode 7 or greater
+- A valid iCloud Account
+- If testing on device, the device must be running iOS 9 or newer 
+
+##### How to Install on a iOS device:
+1. Download or pull from the repo link above.
+2. Open folder called “Semester” and double click on the file called: “Semestr.xcodeproj” with Xcode 7 installed.
+3. Press the “Run” button; which is in the upper left corner of Xcode’s window.
+4. If asked, enter iCloud credentials, and wait for Xcode to launch the application in the Simulator or on the iOS Device
+
+## Limitations / Known Bugs:
+1. Adding, Editing, and deleting individual courses may be buggy. Solution: Add and Delete semesters, not individual courses.
+2. All course information can only be added with PAWS due to the bug above.
+3. Xcode produces UI suggestion warnings about ‘Main.storyboard’. This should be ignored because things that are not implemented in the storyboard was implemented in the source code.
 
 ## Wiki
 
 [Wiki is located here](https://github.com/nextseto/Semestr/wiki)
-
-## Documentation
-
-- A
-- B
 
 ## License
 

@@ -1,23 +1,36 @@
 
-// Developer: Warren Seto
-//      File: EditCourseView.swift
-//   Purpose: Displays a various controls to change properties of each course
+// Name: Warren Seto
+// Course: CSC 415
+// Semester: Spring 2016
+// Instructor: Dr. Pulimood
+// Project name: Semestr
+// Description: An iOS application that keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines.
+// Filename: EditCourseView.swift
+// Description: Displays a various controls to change properties of each course
+// Last modified on: April 19, 2016
 
 import UIKit
 
 final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate
 {
-    
     /* ---- Variables ---- */
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! // The Table View instance for this View Controller
     
-    var selectedCourse:Course!
-    
+    var selectedCourse:Course! // A Course object instance
     let headerText:[String] = ["Name", "Location", "Room", "Day", "Start Time", "End Time", "Image"]
     
-    
     /* ---- ViewController Code ---- */
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: viewDidLoad()
+    //
+    //    Parameters: None
+    //
+    //    Pre-condition: None
+    //    Post-condition: This ViewController is initialized
+    //-----------------------------------------------------------------------------------------
     
     override func viewDidLoad()
     {
@@ -25,15 +38,37 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: textFieldShouldReturn()
+    //
+    //    Parameters:
+    //    textField UITextField; An instance of a textfield object that called the function
+    //
+    //    Pre-condition: UITextFieldDelegate must be included as a part of this View Controller
+    //    Post-condition: They software keyboard in iOS disappears
+    //-----------------------------------------------------------------------------------------
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: save()
+    //
+    //    Parameters:
+    //    sender AnyObject; An instance of a generic object that called the function
+    //
+    //    Pre-condition: None
+    //    Post-condition: Saves an edited Course object to the database
+    //-----------------------------------------------------------------------------------------
+    
     @IBAction func save(sender: AnyObject)
     {
-        var newData:[String?] = []
+        let newData:[String?] = []
         
         // Parse all table cells and put them into newData
         
@@ -47,6 +82,17 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: exitView()
+    //
+    //    Parameters:
+    //    sender AnyObject; An instance of a generic object that called the function
+    //
+    //    Pre-condition: None
+    //    Post-condition: Closes and de-allocates the current view controller
+    //-----------------------------------------------------------------------------------------
+    
     @IBAction func exitView(sender: AnyObject)
     {
         dismissViewControllerAnimated(true, completion: nil)
@@ -55,6 +101,18 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     
     /* ---- UITableView Code ---- */
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: cellForRowAtIndexPath()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //    indexPath NSIndexPath; A NSIndexPath object associated with the index of a tapped table view cell
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Adds a table cell into the table view with information for each cell
+    //-----------------------------------------------------------------------------------------
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("editCell") as! EditCell
@@ -93,9 +151,42 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return headerText[section] }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: numberOfSectionsInTableView()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Returns the number of sections of Courses from the database
+    //-----------------------------------------------------------------------------------------
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int { return headerText.count }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: numberOfRowsInSection()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //    section Int; A tableview object associated with the view
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in an array
+    //-----------------------------------------------------------------------------------------
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: didReceiveMemoryWarning()
+    //
+    //    Parameters: None
+    //
+    //    Pre-condition: None
+    //    Post-condition: This cleans up the ViewController when iOS gives 'low-memory' warning
+    //-----------------------------------------------------------------------------------------
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }

@@ -1,19 +1,34 @@
 
-// Developer: Warren Seto
-//      File: EditSemesterView.swift
-//   Purpose: Displays a list of classes from collected semester data
+// Name: Warren Seto
+// Course: CSC 415
+// Semester: Spring 2016
+// Instructor: Dr. Pulimood
+// Project name: Semestr
+// Description: An iOS application that keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines.
+// Filename: EditSemesterView.swift
+// Description: Displays a list of classes from collected semester data
+// Last modified on: April 19, 2016
 
 import UIKit
 import CoreData
 
 final class EditSemesterView: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate
 {
-    
     /* ---- Variables ---- */
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! // The Table View instance for this View Controller
     
-    var selectedSemester:Semester!
+    var selectedSemester:Semester! // A Semester object instance
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Variable: coreData
+    //
+    //    Purpose: Bridges the database to the table view to show in this View Controller
+    //
+    //    Pre-condition: NSFetchedResultsControllerDelegate must be added to the View Controller
+    //    Post-condition: This ViewController is initialized with Course objects with the query in its predicate
+    //-----------------------------------------------------------------------------------------
 
     lazy var coreData: NSFetchedResultsController =
     {
@@ -29,6 +44,16 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     
     /* ---- ViewController Code ---- */
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: viewDidLoad()
+    //
+    //    Parameters: None
+    //
+    //    Pre-condition: NSFetchedResultsControllerDelegate must be added to the View Controller
+    //    Post-condition: This ViewController is initialized with the name of the Semester and data Course objects from the database
+    //-----------------------------------------------------------------------------------------
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,23 +62,37 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         
         do { try self.coreData.performFetch() }
         catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
-        
-        
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 215", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Monday")
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 315", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Tuesday")
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 415", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Wednesday")
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 515", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Thursday")
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 615", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Friday")
-        CoreData.app.addNewCourse(semester: selectedSemester, "CSC 715", "Forcina", "408", "lo.jpg", "9 AM", "11 AM", "Saturday")
-        
     }
     
-    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: didReceiveMemoryWarning()
+    //
+    //    Parameters: None
+    //
+    //    Pre-condition: None
+    //    Post-condition: This cleans up the ViewController when iOS gives 'low-memory' warning
+    //-----------------------------------------------------------------------------------------
     
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
     
     
     /* ---- NSFetchedResultsController Code ---- */
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: didChangeObject()
+    //
+    //    Parameters:
+    //    controller NSFetchedResultsController; A NSFetchedResultsController object associated with the view
+    //    anObject AnyObject; A core data object from the database
+    //    indexPath NSIndexPath; A NSIndexPath object associated with the index of the cells in the table view
+    //    type NSFetchedResultsChangeType; A enum which denotes changes that are made to the table view
+    //    newIndexPath NSIndexPath; A NSIndexPath object associated with a new index of the cells in the table view (if applicable)
+    //
+    //    Pre-condition: NSFetchedResultsControllerDelegate must be added to the View Controller
+    //    Post-condition: Updates the table view to be in sync with the database
+    //-----------------------------------------------------------------------------------------
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
     {
@@ -76,12 +115,46 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: controllerWillChangeContent()
+    //
+    //    Parameters:
+    //    controller NSFetchedResultsController; A tableview object associated with the view
+    //
+    //    Pre-condition: NSFetchedResultsControllerDelegate must be added to the View Controller
+    //    Post-condition: Updates the table view to be in sync with the database
+    //-----------------------------------------------------------------------------------------
+    
     func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: controllerDidChangeContent()
+    //
+    //    Parameters:
+    //    controller NSFetchedResultsController; A tableview object associated with the view
+    //
+    //    Pre-condition: NSFetchedResultsControllerDelegate must be added to the View Controller
+    //    Post-condition: Updates the table view to be in sync with the database
+    //-----------------------------------------------------------------------------------------
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
     
     
     /* ---- UITableView Code ---- */
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: didSelectRowAtIndexPath()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //    indexPath NSIndexPath; A NSIndexPath object associated with the index of a tapped table view cell
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: De-highlights the cell and presents the 'EditCourseView' View Controller
+    //-----------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -92,6 +165,18 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         presentViewController(view, animated: true, completion: nil)
     }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: cellForRowAtIndexPath()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //    indexPath NSIndexPath; A NSIndexPath object associated with the index of a tapped table view cell
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Adds a table cell into the table view with information for each cell
+    //-----------------------------------------------------------------------------------------
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("CourseCell")!
@@ -99,10 +184,21 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         let temp = coreData.objectAtIndexPath(indexPath) as! Course
         tablecell.textLabel?.text = temp.name
         tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
-        //tablecell.imageView?.image = UIImage(named: "FORCINA")
         
         return tablecell
     }
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: commitEditingStyle()
+    //
+    //    Parameters:
+    //    editingStyle UITableViewCellEditingStyle; A tableview object associated with the view
+    //    indexPath NSIndexPath; A NSIndexPath object associated with the index of a selected table view cell
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Deletes a cell from the table view and deletes the associated object in the database
+    //-----------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -112,6 +208,17 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: numberOfSectionsInTableView()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Returns the number of sections of Courses from the database
+    //-----------------------------------------------------------------------------------------
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         if let sections = coreData.sections
@@ -120,6 +227,18 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
         }
             return 0
     }
+    
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: numberOfRowsInSection()
+    //
+    //    Parameters:
+    //    tableView UITableView; A tableview object associated with the view
+    //    section Int; A tableview object associated with the view
+    //
+    //    Pre-condition: UITableViewDataSource must be added to the View Controller UITableViewDelegate
+    //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in the database
+    //-----------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {

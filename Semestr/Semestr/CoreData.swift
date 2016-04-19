@@ -1,12 +1,19 @@
 
-// Developer: Warren Seto
-//      File: CoreData.swift
-//   Purpose: Standard Singleton that manages the Core Data stack
+// Name: Warren Seto
+// Course: CSC 415
+// Semester: Spring 2016
+// Instructor: Dr. Pulimood
+// Project name: Semestr
+// Description: An iOS application that keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines.
+// Filename: CoreData.swift
+// Description: Standard Singleton that manages the communication between SQLite and the Core Data stack
+// Last modified on: April 19, 2016
 
 import UIKit
 import CoreData
 
-public final class CoreData
+
+public final class CoreData 
 {
     /** Application's Main CoreData Instance (Singleton) */
     static let app = CoreData()
@@ -51,7 +58,16 @@ public final class CoreData
         return managedObjectContext
     }()
 
-    /** Saves all objects that are stored in Core Data */
+    //-----------------------------------------------------------------------------------------
+    //
+    //  Function: save()
+    //
+    //    Parameters: None
+    //
+    //    Pre-condition: None
+    //    Post-condition: Any changes to the database will be saved. Akin to COMMIT
+    //-----------------------------------------------------------------------------------------
+    
     internal func save()
     {
         if managedObjectContext.hasChanges

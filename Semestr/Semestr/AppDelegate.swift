@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     //    application UIApplication; The UIApplication instance of this application.
     //
     //    Pre-condition: None
-    //    Post-condition: An override point for customization after application launch.
+    //    Post-condition: An override point for customization after application launch. Since there is no custom code, it just returns true and lets the application continue.
     //-----------------------------------------------------------------------------------------
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool

@@ -100,12 +100,6 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
             
-        case .Delete:
-            if let indexPath = indexPath
-            {
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            }
-            
         default:
             print("Not Implemented - \(type)")
         }
@@ -120,7 +114,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         
         
     }
@@ -132,17 +126,23 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
         let temp = coreData.objectAtIndexPath(indexPath) as! Course
         tablecell.textLabel?.text = temp.name
         tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
-        //tablecell.imageView?.image = UIImage(named: "FORCINA")
+        
+        if (temp.location?.containsString("Armstrong") == true)
+        {
+            tablecell.imageView?.image = UIImage(named: "Armstrong")
+        }
+        
+        else if (temp.location?.containsString("Forcina") == true)
+        {
+            tablecell.imageView?.image = UIImage(named: "Forcina")
+        }
+        
+        else
+        {
+            tablecell.imageView?.image = UIImage(named: "default")
+        }
         
         return tablecell
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        if (editingStyle == .Delete)
-        {
-            CoreData.app.deleteObject(coreData.objectAtIndexPath(indexPath) as! NSManagedObject)
-        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int

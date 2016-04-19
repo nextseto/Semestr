@@ -85,14 +85,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tPj-Mc-fR7">
-                                                    <rect key="frame" x="15" y="18" width="50" height="33"/>
+                                                    <rect key="frame" x="15" y="23" width="37" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2H5-ke-sGx">
-                                                    <rect key="frame" x="15" y="51" width="35" height="16"/>
+                                                    <rect key="frame" x="15" y="46" width="35" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,14 +151,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tn9-jW-flM">
-                                                    <rect key="frame" x="15" y="18" width="50" height="33"/>
+                                                    <rect key="frame" x="15" y="28" width="22" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WZf-t3-kIC">
-                                                    <rect key="frame" x="15" y="51" width="47" height="16"/>
+                                                    <rect key="frame" x="15" y="40" width="47" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -301,7 +301,9 @@
                             <constraint firstItem="xe7-HB-F3U" firstAttribute="top" secondItem="z9K-Gn-cxL" secondAttribute="top" id="z49-nl-LIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Semester" id="xSo-R4-dOR"/>
+                    <navigationItem key="navigationItem" title="Add Semester" id="xSo-R4-dOR">
+                        <barButtonItem key="backBarButtonItem" title=" " id="05G-YP-5Dw"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjY-VM-uUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -393,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="niH-FI-9ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3728" y="-455"/>
+            <point key="canvasLocation" x="4486" y="-1201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jru-N2-SkL">
@@ -498,10 +500,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5zL-fk-1WJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="K0l-GX-LlZ">
+                            <connections>
+                                <action selector="save:" destination="1nv-GV-qcI" id="rOt-0F-aQD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBG-AB-2c0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3728" y="-1201"/>
+            <point key="canvasLocation" x="3722" y="-455"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3ob-FE-ZJp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Wj-Rg-p0f" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0zC-oE-pw2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1nv-GV-qcI" kind="relationship" relationship="rootViewController" id="7lC-qi-epg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2K-dV-21x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3722" y="-1201"/>
         </scene>
     </scenes>
     <resources>

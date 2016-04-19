@@ -73,6 +73,22 @@ extension CoreData
         }
     }
     
+    internal func getSemester(inputSemesterName:String) -> Semester
+    {
+        do
+        {
+            let fetch = NSFetchRequest(entityName: "Semester") // Get all Semester Objects
+            fetch.predicate = NSPredicate(format: "name == '\(inputSemesterName)'") // Find elements that are associated with the semester
+            
+            return try self.managedObjectContext.executeFetchRequest(fetch).first as! Semester
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+            return Semester()
+        }
+    }
+    
     internal func deleteObject(inputObject:NSManagedObject)
     {
         managedObjectContext.deleteObject(inputObject)

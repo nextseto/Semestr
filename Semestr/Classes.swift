@@ -55,6 +55,7 @@ extension CoreData
         tempSemester.name = inputName
         tempSemester.imported = false
         
+        
         save()
     }
     

@@ -12,71 +12,44 @@
 import UIKit
 import CoreData
 
-
-public final class CoreData 
+public final class CoreData
 {
-    /** Application's Main CoreData Instance (Singleton) */
+    /** Core Data Singleton Instance. An entry point to use the Core Data Stack */
     static let app = CoreData()
     
-    internal lazy var applicationDocumentsDirectory: NSURL =
+    /** Main Core Data variable to access data */
+    lazy var managedObjectContext: NSManagedObjectContext =
     {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1]
-    }()
-    
-    internal lazy var managedObjectModel: NSManagedObjectModel =
-    {
-        let modelURL = NSBundle.mainBundle().URLForResource("Semestr", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
-    }()
-    
-    internal lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator =
-    {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
-        
-        do { try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil) }
-        catch
-        {
-            var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType),
+            context = NSPersistentStoreCoordinator(managedObjectModel: NSManagedObjectModel(contentsOfURL: NSBundle.mainBundle().URLForResource("Semestr", withExtension: "momd")!)!),
+            storeURL = NSURL(string: "SingleViewCoreData.sqlite", relativeToURL: NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first)
             
-            dict[NSUnderlyingErrorKey] = error as NSError
-            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            print("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+        do
+        {
+            try context.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+        }
+        catch let err as NSError
+        {
+            print("Could not perform operation: \(err), \(err.userInfo)")
             abort()
         }
         
-        return coordinator
-    }()
-    
-    internal lazy var managedObjectContext: NSManagedObjectContext =
-    {
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
+        managedObjectContext.persistentStoreCoordinator = context
         return managedObjectContext
     }()
-
-    //-----------------------------------------------------------------------------------------
-    //
-    //  Function: save()
-    //
-    //    Parameters: None
-    //
-    //    Pre-condition: None
-    //    Post-condition: Any changes to the database will be saved. Akin to COMMIT
-    //-----------------------------------------------------------------------------------------
     
+    /** Core Data save function. Essentially serves as a COMMIT */
     internal func save()
     {
         if managedObjectContext.hasChanges
         {
-            do { try managedObjectContext.save() }
-            catch
+            do
             {
-                let nserror = error as NSError
-                print("Unresolved error \(nserror), \(nserror.userInfo)")
+                try managedObjectContext.save()
+            }
+            catch let err as NSError
+            {
+                print("Could not save: \(err), \(err.userInfo)")
                 abort()
             }
         }

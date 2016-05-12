@@ -3,12 +3,15 @@
 ![platforms](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)
 [![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
 
-**Semestr** keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines.
+**Semestr** keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines on their iOS devices running iOS 8 or higher.
 
 ## Features
 - Can add and delete courses for a named semester
 - Can toggle to see specific courses in the week
 - Can pull PAWS data and add course information into the application
+
+## Innovative Aspects
+This application innovatively uses Core Data to store and manage the data for the user's Course and Semester entries. This application will let users conveniently see their schedules on their phones instead of using a picture of their schedule.
 
 ## Install
 ##### Build Requirements:

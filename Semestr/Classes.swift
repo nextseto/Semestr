@@ -36,6 +36,26 @@ class Semester: NSManagedObject
     @NSManaged var courses: NSSet?
 }
 
+/** A Pallet has a: prominent, and dominant associated to an image.*/
+public struct Pallet
+{
+    var prominent: UIColor!
+    var dominant: UIColor!
+}
+
+/** A Pixel has a: color, and the number of times that color appears in an image.*/
+public class Pixel
+{
+    var color: UIColor
+    var count: Int
+    
+    init( _ inputColor: UIColor, _ inputNum: Int)
+    {
+        color = inputColor
+        count = inputNum
+    }
+}
+
 extension CoreData
 {
     //-----------------------------------------------------------------------------------------

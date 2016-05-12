@@ -273,9 +273,8 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SemesterCell")!
-        
-        let temp = coreData.objectAtIndexPath(indexPath) as! Semester
+        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SemesterCell")!,
+            temp = coreData.objectAtIndexPath(indexPath) as! Semester
         
         tablecell.textLabel?.text = temp.name
         

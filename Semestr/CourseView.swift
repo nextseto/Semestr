@@ -69,7 +69,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //
     //  Function: viewDidAppear()
     //
-    //    Parameters: 
+    //    Parameters:
     //    animated Bool; Toggles if the view should animate when appears
     //
     //    Pre-condition: None
@@ -123,7 +123,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
         {
             day = (day + 1) % 7
             title = days[day]
-
+            
             do
             {
                 coreData.fetchRequest.predicate = NSPredicate(format: "day = '\(days[day])' AND semester.selected == true")
@@ -239,17 +239,39 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
         {
             tablecell.imageView?.image = UIImage(named: "Armstrong")
         }
-        
+            
         else if (temp.location?.containsString("Forcina") == true)
         {
             tablecell.imageView?.image = UIImage(named: "Forcina")
         }
-        
+            
         else
         {
             tablecell.imageView?.image = UIImage(named: "default")
         }
         
+        let rect = UIView(frame: CGRect(x: view.frame.width - 89, y: tablecell.frame.height * 0.6, width: 80, height: 27))
+        rect.layer.cornerRadius = 12
+        
+        let label = UILabel(frame: CGRect(x: view.frame.width - 91, y: tablecell.frame.height * 0.6, width: 85, height: 27))
+        label.font = UIFont(name: "Arial", size: 10.0)
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = NSTextAlignment.Center
+        label.text = "Ends: \((temp.startTime?.componentsSeparatedByString(" ").last)!)"
+        
+        tablecell.imageView?.image!.getColors(
+        {
+            (colors) in
+            
+            dispatch_async(dispatch_get_main_queue())
+            {
+                rect.backgroundColor = colors.dominant
+            }
+        })
+        
+        tablecell.addSubview(rect)
+        tablecell.addSubview(label)
+
         return tablecell
     }
     

@@ -49,7 +49,7 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     //    Post-condition: They software keyboard in iOS disappears
     //-----------------------------------------------------------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
@@ -66,20 +66,12 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     //    Post-condition: Saves an edited Course object to the database
     //-----------------------------------------------------------------------------------------
     
-    @IBAction func save(sender: AnyObject)
+    @IBAction func save(_ sender: AnyObject)
     {
-        let newData:[String?] = []
-        
-        // Parse all table cells and put them into newData
-        
-        print(newData)
-        
-        // Do the validation here before saving
-        
         CoreData.app.save()
         
         // Only if information CAN be saved
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     //-----------------------------------------------------------------------------------------
@@ -93,9 +85,9 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     //    Post-condition: Closes and de-allocates the current view controller
     //-----------------------------------------------------------------------------------------
     
-    @IBAction func exitView(sender: AnyObject)
+    @IBAction func exitView(_ sender: AnyObject)
     {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -113,9 +105,9 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     //    Post-condition: Adds a table cell into the table view with information for each cell
     //-----------------------------------------------------------------------------------------
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("editCell") as! EditCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "editCell") as! EditCell
         
         cell.textfield.delegate = self
         
@@ -149,7 +141,7 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return headerText[section] }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return headerText[section] }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -162,7 +154,7 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     //    Post-condition: Returns the number of sections of Courses from the database
     //-----------------------------------------------------------------------------------------
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return headerText.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return headerText.count }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -176,7 +168,7 @@ final class EditCourseView: UIViewController, UITableViewDelegate, UITableViewDa
     //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in an array
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
     
     //-----------------------------------------------------------------------------------------
     //

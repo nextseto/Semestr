@@ -10,7 +10,6 @@
 		C50017451CC6B13C002D49DD /* SemestrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50017441CC6B13C002D49DD /* SemestrTests.swift */; };
 		C500174C1CC6B1F0002D49DD /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDDD401C979F2600DD7562 /* CoreData.swift */; };
 		C500174D1CC6B240002D49DD /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDDD4F1C97A8A300DD7562 /* Classes.swift */; };
-		C504E2F51CE139D700AF352C /* UIImage_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504E2F41CE139D700AF352C /* UIImage_Extension.swift */; };
 		C57CA68B1C95279E00863812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57CA68A1C95279E00863812 /* AppDelegate.swift */; };
 		C57CA68D1C95279E00863812 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57CA68C1C95279E00863812 /* AboutView.swift */; };
 		C57CA6901C95279E00863812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57CA68E1C95279E00863812 /* Main.storyboard */; };
@@ -43,7 +42,6 @@
 		C50017421CC6B13C002D49DD /* SemestrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SemestrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C50017441CC6B13C002D49DD /* SemestrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestrTests.swift; sourceTree = "<group>"; };
 		C50017461CC6B13C002D49DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C504E2F41CE139D700AF352C /* UIImage_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage_Extension.swift; sourceTree = "<group>"; };
 		C57CA6871C95279E00863812 /* Semestr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Semestr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C57CA68A1C95279E00863812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C57CA68C1C95279E00863812 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutView.swift; path = Semestr/AboutView.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				C57CA68A1C95279E00863812 /* AppDelegate.swift */,
-				C504E2F41CE139D700AF352C /* UIImage_Extension.swift */,
 				C57CA68E1C95279E00863812 /* Main.storyboard */,
 				C5F8A6341C977B2E00291453 /* Views */,
 				C5FDDD421C97A02300DD7562 /* Data */,
@@ -205,16 +202,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Warren Seto";
 				TargetAttributes = {
 					C50017411CC6B13C002D49DD = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = C57CA6861C95279E00863812;
 					};
 					C57CA6861C95279E00863812 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 7W47R8EV79;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 0;
@@ -288,7 +287,6 @@
 				C57CA68B1C95279E00863812 /* AppDelegate.swift in Sources */,
 				C57CA6931C95279E00863812 /* Semestr.xcdatamodeld in Sources */,
 				C5F8A63C1C977BB300291453 /* EditSemesterView.swift in Sources */,
-				C504E2F51CE139D700AF352C /* UIImage_Extension.swift in Sources */,
 				C5E76ACA1CC47A24000C7294 /* EditCourseView.swift in Sources */,
 				C5F8A63A1C977BAA00291453 /* BrowserView.swift in Sources */,
 			);
@@ -334,6 +332,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nextseto.SemestrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Semestr.app/Semestr";
 			};
 			name = Debug;
@@ -348,6 +347,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nextseto.SemestrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Semestr.app/Semestr";
 			};
 			name = Release;
@@ -365,8 +365,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -409,8 +411,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -429,6 +433,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -445,6 +450,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nextseto.Semestr.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -460,6 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nextseto.Semestr.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

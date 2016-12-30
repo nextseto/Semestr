@@ -20,13 +20,13 @@ public final class CoreData
     /** Main Core Data variable to access data */
     lazy var managedObjectContext: NSManagedObjectContext =
     {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType),
-            context = NSPersistentStoreCoordinator(managedObjectModel: NSManagedObjectModel(contentsOfURL: NSBundle.mainBundle().URLForResource("Semestr", withExtension: "momd")!)!),
-            storeURL = NSURL(string: "SingleViewCoreData.sqlite", relativeToURL: NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType),
+            context = NSPersistentStoreCoordinator(managedObjectModel: NSManagedObjectModel(contentsOf: Bundle.main.url(forResource: "Semestr", withExtension: "momd")!)!),
+            storeURL = URL(string: "SingleViewCoreData.sqlite", relativeTo: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first)
             
         do
         {
-            try context.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            try context.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
         }
         catch let err as NSError
         {

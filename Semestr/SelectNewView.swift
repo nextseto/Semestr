@@ -45,11 +45,11 @@ final class SelectNewView: UIViewController, UITableViewDelegate, UITableViewDat
     //    Post-condition: De-highlights the cell and presents the 'BrowserView' View Controller
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         
-        let view = storyboard!.instantiateViewControllerWithIdentifier("BrowserView") as! BrowserView
+        let view = storyboard!.instantiateViewController(withIdentifier: "BrowserView") as! BrowserView
         view.parseSite = pictureArray[indexPath.row]
         navigationController?.pushViewController(view, animated: true)
     }
@@ -66,9 +66,9 @@ final class SelectNewView: UIViewController, UITableViewDelegate, UITableViewDat
     //    Post-condition: Adds a table cell into the table view with information for each cell
     //-----------------------------------------------------------------------------------------
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("picCell") as! PictureCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "picCell") as! PictureCell
 
         cell.picture.image = UIImage(named: pictureArray[indexPath.row])
         
@@ -87,7 +87,7 @@ final class SelectNewView: UIViewController, UITableViewDelegate, UITableViewDat
     //    Post-condition: Returns the number of rows to populate the tableview from an array
     //-----------------------------------------------------------------------------------------
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return pictureArray.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return pictureArray.count }
     
     //-----------------------------------------------------------------------------------------
     //

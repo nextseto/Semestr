@@ -32,9 +32,9 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: This ViewController is initialized with Course objects with the query in its predicate
     //-----------------------------------------------------------------------------------------
     
-    lazy var coreData: NSFetchedResultsController =
+    lazy var coreData: NSFetchedResultsController<NSFetchRequestResult> =
         {
-            let fetch = NSFetchRequest(entityName: "Course") // Get all Course Objects
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Course") // Get all Course Objects
             fetch.sortDescriptors = [NSSortDescriptor(key: "day", ascending: true)] // Sort by Day
             fetch.predicate = NSPredicate(format: "day = '\(self.today)' AND semester.selected == true") // Find elements that are associated with the semester
             
@@ -57,12 +57,12 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     {
         super.viewDidLoad()
         
-        let format = NSDateFormatter()
+        let format = DateFormatter()
         format.dateFormat = "EEEE"
-        today = format.stringFromDate(NSDate())
+        today = format.string(from: Date())
         title = today
         
-        day = days.indexOf(today)!
+        day = days.index(of: today)!
     }
     
     //-----------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Syncs the database with this ViewController
     //-----------------------------------------------------------------------------------------
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         do
         {
@@ -99,7 +99,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Allows the user to scroll between the days of the week and updates the view accordingly
     //-----------------------------------------------------------------------------------------
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     {
         let distance = abs(scrollView.contentOffset.x)
         
@@ -113,7 +113,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
             {
                 coreData.fetchRequest.predicate = NSPredicate(format: "day = '\(days[day])' AND semester.selected == true")
                 try coreData.performFetch()
-                tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Right)
+                tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.right)
             }
                 
             catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
@@ -128,7 +128,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
             {
                 coreData.fetchRequest.predicate = NSPredicate(format: "day = '\(days[day])' AND semester.selected == true")
                 try coreData.performFetch()
-                tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
+                tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.left)
             }
                 
             catch let err as NSError { print("Could not fetch \(err), \(err.userInfo)") }
@@ -153,14 +153,14 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?)
     {
         switch (type)
         {
-        case .Insert:
+        case .insert:
             if let indexPath = newIndexPath
             {
-                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                tableView.insertRows(at: [indexPath], with: .fade)
             }
             
         default:
@@ -179,7 +179,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { tableView.beginUpdates() }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -192,7 +192,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { tableView.endUpdates() }
     
     
     /* ---- UITableView Code ---- */
@@ -209,9 +209,9 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: De-highlights the cell
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         
     }
     
@@ -227,20 +227,20 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Adds a table cell into the table view with information for each cell
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("CourseCell")!
+        let tablecell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "CourseCell")!
         
-        let temp = coreData.objectAtIndexPath(indexPath) as! Course
+        let temp = coreData.object(at: indexPath) as! Course
         tablecell.textLabel?.text = temp.name
         tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
         
-        if (temp.location?.containsString("Armstrong") == true)
+        if (temp.location?.contains("Armstrong") == true)
         {
             tablecell.imageView?.image = UIImage(named: "Armstrong")
         }
             
-        else if (temp.location?.containsString("Forcina") == true)
+        else if (temp.location?.contains("Forcina") == true)
         {
             tablecell.imageView?.image = UIImage(named: "Forcina")
         }
@@ -255,22 +255,9 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
         
         let label = UILabel(frame: CGRect(x: view.frame.width - 91, y: tablecell.frame.height * 0.6, width: 85, height: 27))
         label.font = UIFont(name: "Arial", size: 10.0)
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "Ends: \((temp.startTime?.componentsSeparatedByString(" ").last)!)"
-        
-        tablecell.imageView?.image!.getColors(
-        {
-            (colors) in
-            
-            dispatch_async(dispatch_get_main_queue())
-            {
-                rect.backgroundColor = colors.dominant
-            }
-        })
-        
-        tablecell.addSubview(rect)
-        tablecell.addSubview(label)
+        label.textColor = UIColor.white
+        label.textAlignment = NSTextAlignment.center
+        label.text = "Ends: \((temp.startTime?.components(separatedBy: " ").last)!)"
 
         return tablecell
     }
@@ -286,7 +273,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Returns the number of sections of Courses from the database
     //-----------------------------------------------------------------------------------------
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         if let sections = coreData.sections
         {
@@ -307,7 +294,7 @@ final class CourseView: UIViewController, UITableViewDataSource, UITableViewDele
     //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in the database
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let sections = coreData.sections
         {

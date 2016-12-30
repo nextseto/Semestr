@@ -44,7 +44,7 @@ public struct Pallet
 }
 
 /** A Pixel has a: color, and the number of times that color appears in an image.*/
-public class Pixel
+open class Pixel
 {
     var color: UIColor
     var count: Int
@@ -69,9 +69,9 @@ extension CoreData
     //    Post-condition: A 'Semester' object is made and saved into the database
     //-----------------------------------------------------------------------------------------
     
-    internal func addNewSemester(inputName:String)
+    internal func addNewSemester(_ inputName:String)
     {
-        let tempSemester:Semester = NSEntityDescription.insertNewObjectForEntityForName("Semester", inManagedObjectContext: self.managedObjectContext) as! Semester
+        let tempSemester:Semester = NSEntityDescription.insertNewObject(forEntityName: "Semester", into: self.managedObjectContext) as! Semester
         tempSemester.name = inputName
         tempSemester.imported = false
         
@@ -97,9 +97,9 @@ extension CoreData
     //    Post-condition: A 'Course' object is made and saved into the database
     //-----------------------------------------------------------------------------------------
     
-    internal func addNewCourse(semester semester:Semester, _  inputName:String, _  inputLocation:String, _  inputRoom:String, _ inputImageName:String, _ inputStartTime:String, _ inputEndTime:String, _ inputDay:String)
+    internal func addNewCourse(semester:Semester, _  inputName:String, _  inputLocation:String, _  inputRoom:String, _ inputImageName:String, _ inputStartTime:String, _ inputEndTime:String, _ inputDay:String)
     {
-        let tempCourse:Course = NSEntityDescription.insertNewObjectForEntityForName("Course", inManagedObjectContext: self.managedObjectContext) as! Course
+        let tempCourse:Course = NSEntityDescription.insertNewObject(forEntityName: "Course", into: self.managedObjectContext) as! Course
         
         tempCourse.name = inputName
         tempCourse.location = inputLocation
@@ -127,7 +127,7 @@ extension CoreData
     {
         do
         {
-            return try self.managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "Semester")) as! [Semester]
+            return try self.managedObjectContext.fetch(NSFetchRequest(entityName: "Semester")) 
         }
         catch let error as NSError
         {
@@ -147,14 +147,14 @@ extension CoreData
     //    Post-condition: A 'Semester' objects is returned to the user
     //-----------------------------------------------------------------------------------------
     
-    internal func getSemester(inputSemesterName:String) -> Semester
+    internal func getSemester(_ inputSemesterName:String) -> Semester
     {
         do
         {
-            let fetch = NSFetchRequest(entityName: "Semester") // Get all Semester Objects
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Semester") // Get all Semester Objects
             fetch.predicate = NSPredicate(format: "name == '\(inputSemesterName)'") // Find elements that are associated with the semester
             
-            return try self.managedObjectContext.executeFetchRequest(fetch).first as! Semester
+            return try self.managedObjectContext.fetch(fetch).first as! Semester
         }
         catch let error as NSError
         {
@@ -174,9 +174,9 @@ extension CoreData
     //    Post-condition: The object is deleted in the database
     //-----------------------------------------------------------------------------------------
     
-    internal func deleteObject(inputObject:NSManagedObject)
+    internal func deleteObject(_ inputObject:NSManagedObject)
     {
-        managedObjectContext.deleteObject(inputObject)
+        managedObjectContext.delete(inputObject)
         save()
     }
 }

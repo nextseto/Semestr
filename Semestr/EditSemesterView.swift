@@ -30,9 +30,9 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: This ViewController is initialized with Course objects with the query in its predicate
     //-----------------------------------------------------------------------------------------
 
-    lazy var coreData: NSFetchedResultsController =
+    lazy var coreData: NSFetchedResultsController<NSFetchRequestResult> =
     {
-        let fetch = NSFetchRequest(entityName: "Course") // Get all Course Objects
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Course") // Get all Course Objects
         fetch.sortDescriptors = [NSSortDescriptor(key: "day", ascending: true)] // Sort by Day
         fetch.predicate = NSPredicate(format: "semester.name == %@", self.selectedSemester.name!) // Find elements that are associated with the semester
         
@@ -94,20 +94,20 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?)
     {
         switch (type)
         {
-            case .Insert:
+            case .insert:
                 if let indexPath = newIndexPath
                 {
-                    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    tableView.insertRows(at: [indexPath], with: .fade)
                 }
             
-            case .Delete:
+            case .delete:
                 if let indexPath = indexPath
                 {
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             
             default:
@@ -126,7 +126,7 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { tableView.beginUpdates() }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -139,7 +139,7 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { tableView.endUpdates() }
     
     
     /* ---- UITableView Code ---- */
@@ -156,13 +156,13 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: De-highlights the cell and presents the 'EditCourseView' View Controller
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         
-        let view = storyboard!.instantiateViewControllerWithIdentifier("EditCourseView") as! EditCourseView
-        view.selectedCourse = coreData.objectAtIndexPath(indexPath) as! Course
-        presentViewController(view, animated: true, completion: nil)
+        let view = storyboard!.instantiateViewController(withIdentifier: "EditCourseView") as! EditCourseView
+        view.selectedCourse = coreData.object(at: indexPath) as! Course
+        present(view, animated: true, completion: nil)
     }
     
     //-----------------------------------------------------------------------------------------
@@ -177,11 +177,11 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Adds a table cell into the table view with information for each cell
     //-----------------------------------------------------------------------------------------
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("CourseCell")!
+        let tablecell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "CourseCell")!
         
-        let temp = coreData.objectAtIndexPath(indexPath) as! Course
+        let temp = coreData.object(at: indexPath) as! Course
         tablecell.textLabel?.text = temp.name
         tablecell.detailTextLabel?.text = "\(temp.location!) \(temp.room!)"
         
@@ -200,11 +200,11 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Deletes a cell from the table view and deletes the associated object in the database
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if (editingStyle == .Delete)
+        if (editingStyle == .delete)
         {
-            CoreData.app.deleteObject(coreData.objectAtIndexPath(indexPath) as! NSManagedObject)
+            CoreData.app.deleteObject(coreData.object(at: indexPath) as! NSManagedObject)
         }
     }
     
@@ -219,7 +219,7 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Returns the number of sections of Courses from the database
     //-----------------------------------------------------------------------------------------
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         if let sections = coreData.sections
         {
@@ -240,7 +240,7 @@ final class EditSemesterView: UIViewController, UITableViewDataSource, UITableVi
     //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in the database
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let sections = coreData.sections
         {

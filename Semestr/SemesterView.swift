@@ -30,9 +30,9 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: This ViewController is initialized with Course objects with the query in its predicate
     //-----------------------------------------------------------------------------------------
     
-    lazy var coreData: NSFetchedResultsController =
+    lazy var coreData: NSFetchedResultsController<NSFetchRequestResult> =
     {
-        let fetch = NSFetchRequest(entityName: "Semester") // Get all Semester Objects
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Semester") // Get all Semester Objects
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)] // Sort objects by their name
         
         let control = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: CoreData.app.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -73,7 +73,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Changes the navigation bar button from "Done" to "Edit" when tapped
     //-----------------------------------------------------------------------------------------
     
-    @IBAction func toggleEdit(sender: AnyObject)
+    @IBAction func toggleEdit(_ sender: AnyObject)
     {
         flag = !flag
         toggleEditMode()
@@ -81,13 +81,13 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
         if flag
         {
             (sender as! UIBarButtonItem).title = "Done"
-            (sender as! UIBarButtonItem).style = .Done
+            (sender as! UIBarButtonItem).style = .done
         }
         
         else
         {
             (sender as! UIBarButtonItem).title = "Edit"
-            (sender as! UIBarButtonItem).style = .Plain
+            (sender as! UIBarButtonItem).style = .plain
         }
     }
     
@@ -107,23 +107,23 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
         
         for rowIndex in tableView.indexPathsForVisibleRows!
         {
-            let cell = tableView.cellForRowAtIndexPath(rowIndex)
+            let cell = tableView.cellForRow(at: rowIndex)
             
             if flag
             {
-                cell!.accessoryType = .DisclosureIndicator
+                cell!.accessoryType = .disclosureIndicator
             }
                 
             else
             {
-                if ((coreData.objectAtIndexPath(rowIndex) as! Semester)).selected
+                if ((coreData.object(at: rowIndex) as! Semester)).selected
                 {
-                    cell?.accessoryType = .Checkmark
+                    cell?.accessoryType = .checkmark
                 }
                     
                 else
                 {
-                    cell?.accessoryType = .None
+                    cell?.accessoryType = .none
                 }
             }
         }
@@ -161,37 +161,37 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?)
     {
         switch (type)
         {
-            case .Insert:
+            case .insert:
                 if let indexPath = newIndexPath
                 {
-                    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    tableView.insertRows(at: [indexPath], with: .fade)
                 }
             
-            case .Update:
+            case .update:
                 if let indexPath = indexPath
                 {
                     if !flag
                     {
-                        if ((coreData.objectAtIndexPath(indexPath) as! Semester)).selected
+                        if ((coreData.object(at: indexPath) as! Semester)).selected
                         {
-                            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+                            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                         }
                             
                         else
                         {
-                            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+                            tableView.cellForRow(at: indexPath)?.accessoryType = .none
                         }
                     }
                 }
             
-            case .Delete:
+            case .delete:
                 if let indexPath = indexPath
                 {
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             
             default: break
@@ -209,7 +209,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) { tableView.beginUpdates() }
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { tableView.beginUpdates() }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -222,7 +222,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Updates the table view to be in sync with the database
     //-----------------------------------------------------------------------------------------
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) { tableView.endUpdates() }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { tableView.endUpdates() }
     
     
     /* ---- UITableView Code ---- */
@@ -239,11 +239,11 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: De-highlights the cell
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        let temp = coreData.objectAtIndexPath(indexPath) as! Semester
+        let temp = coreData.object(at: indexPath) as! Semester
         
         if !flag
         {
@@ -253,7 +253,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
             
         else
         {
-            let view = storyboard!.instantiateViewControllerWithIdentifier("EditSemesterView") as! EditSemesterView
+            let view = storyboard!.instantiateViewController(withIdentifier: "EditSemesterView") as! EditSemesterView
             view.selectedSemester = temp
             navigationController?.pushViewController(view, animated: true)
         }
@@ -271,26 +271,26 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Adds a table cell into the table view with information for each cell
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let tablecell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SemesterCell")!,
-            temp = coreData.objectAtIndexPath(indexPath) as! Semester
+        let tablecell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SemesterCell")!,
+            temp = coreData.object(at: indexPath) as! Semester
         
         tablecell.textLabel?.text = temp.name
         
         if flag
         {
-            tablecell.accessoryType = .DisclosureIndicator
+            tablecell.accessoryType = .disclosureIndicator
         }
             
         else if temp.selected
         {
-            tablecell.accessoryType = .Checkmark
+            tablecell.accessoryType = .checkmark
         }
             
         else
         {
-            tablecell.accessoryType = .None
+            tablecell.accessoryType = .none
         }
         
         return tablecell
@@ -308,7 +308,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Returns the name of a header for a section to the TableView Controller
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if (section == 0)
         {
@@ -329,11 +329,11 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Deletes a cell from the table view and deletes the associated object in the database
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if (editingStyle == .Delete)
+        if (editingStyle == .delete)
         {
-            CoreData.app.deleteObject(coreData.objectAtIndexPath(indexPath) as! NSManagedObject)
+            CoreData.app.deleteObject(coreData.object(at: indexPath) as! NSManagedObject)
         }
     }
     
@@ -348,7 +348,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Returns the number of sections of Courses from the database
     //-----------------------------------------------------------------------------------------
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         if let sections = coreData.sections
         {
@@ -369,7 +369,7 @@ final class SemesterView: UIViewController, UITableViewDataSource, UITableViewDe
     //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in the database
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let sections = coreData.sections
         {

@@ -3,7 +3,9 @@
 ![platforms](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)
 [![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
 
-**Semestr** keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines on their iOS devices running iOS 8 or higher.
+**Semestr** keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines on their iOS devices running iOS 9+.
+
+ Once development is done I will submit this application to the App Store as a free app and keep this repository open source to let others build on top of this.
 
 ## Features
 - Can add and delete courses for a named semester
@@ -15,12 +17,13 @@ This application innovatively uses Core Data to store and manage the data for th
 
 ## Install
 ##### Build Requirements:
-- A Macintosh running 10.11 or greater
+- A Macintosh running macOS 10.11 or greater
 - Xcode 7 or greater
 - A valid iCloud Account
-- If testing on device, the device must be running iOS 9 or newer 
+- If testing on device, the device must be running iOS 9+ 
 
 ##### How to Install on a iOS device:
+
 1. Download or pull from the repo link above.
 2. Open folder called “Semester” and double click on the file called: “Semestr.xcodeproj” with Xcode 7 installed.
 3. Press the “Run” button; which is in the upper left corner of Xcode’s window.
@@ -37,4 +40,4 @@ This application innovatively uses Core Data to store and manage the data for th
 
 ## License
 
-**Semestr** is released under the MIT license. See LICENSE for details.
+All source code in **Semestr** is released under the MIT license. See LICENSE for details.

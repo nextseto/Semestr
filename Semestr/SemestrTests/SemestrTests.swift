@@ -34,7 +34,7 @@ class SemestrTests: XCTestCase
     {
         super.setUp()
 
-        let newSemester = NSEntityDescription.insertNewObjectForEntityForName("Semester", inManagedObjectContext: CoreData.app.managedObjectContext)
+        let newSemester = NSEntityDescription.insertNewObject(forEntityName: "Semester", into: CoreData.app.managedObjectContext)
         newSemester.setValue("[Test Semester]", forKey: "name")
         newSemester.setValue(true, forKey: "imported")
         
@@ -42,10 +42,10 @@ class SemestrTests: XCTestCase
         
         do
         {
-            let fetch = NSFetchRequest(entityName: "Semester") // Get all Semester Objects
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Semester") // Get all Semester Objects
             fetch.predicate = NSPredicate(format: "name == '[Test Semester]'") // Find elements that are associated with the semester
             
-            tempSemester = try CoreData.app.managedObjectContext.executeFetchRequest(fetch).first as! Semester
+            tempSemester = try CoreData.app.managedObjectContext.fetch(fetch).first as! Semester
         }
         catch let error as NSError
         {
@@ -85,11 +85,11 @@ class SemestrTests: XCTestCase
         //Test the semester entry by checking a boolean of the object
         do
         {
-            let fetch = NSFetchRequest(entityName: "Semester") // Get all Semester Objects
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Semester") // Get all Semester Objects
             fetch.predicate = NSPredicate(format: "name == '[Test Semester]'") // Find elements that are associated with the semester
             
-            let aSemester = try CoreData.app.managedObjectContext.executeFetchRequest(fetch).first
-            XCTAssertEqual(aSemester!.imported, true, "the object should have the same String values")
+            let aSemester = try CoreData.app.managedObjectContext.fetch(fetch).first
+            XCTAssertEqual((aSemester! as AnyObject).imported, true, "the object should have the same String values")
             
         }
         catch let error as NSError

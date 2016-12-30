@@ -47,9 +47,9 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: Closes and de-allocates the current view controller
     //-----------------------------------------------------------------------------------------
     
-    @IBAction func closeViewController(sender: AnyObject)
+    @IBAction func closeViewController(_ sender: AnyObject)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     //-----------------------------------------------------------------------------------------
@@ -79,9 +79,9 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: De-highlights the cell and presents the other View Controllers
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -90,29 +90,25 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
             case 0:
                 if (indexPath.row == 0)
                 {
-                    navigationController?.pushViewController(storyboard.instantiateViewControllerWithIdentifier("SemesterView"), animated: true)
+                    navigationController?.pushViewController(storyboard.instantiateViewController(withIdentifier: "SemesterView"), animated: true)
                 }
                 else
                 {
-                    print("Add Semester")
-                    
-                    navigationController?.pushViewController(storyboard.instantiateViewControllerWithIdentifier("SelectNewView"), animated: true)
+                    navigationController?.pushViewController(storyboard.instantiateViewController(withIdentifier: "SelectNewView"), animated: true)
                     //CoreData.app.addNewSemester("Spring 201\(arc4random_uniform(9) + 0)")
                     
                 }
             case 1:
                 if (indexPath.row == 0)
                 {
-                    print("Send Feedback")
+                    /* Unimplemented */
                 }
                 else
                 {
-                    print("Please Rate Semestr")
+                    /* Unimplemented */
                 }
-            case 2:
-                print("About")
-
-            default: break
+            default:
+            break
         }
     }
     
@@ -128,9 +124,9 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: Adds a table cell into the table view with information for each cell
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("nameCell")!
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "nameCell")!
         
         cell.textLabel?.text = mainText[indexPath.section][indexPath.row]
         
@@ -149,7 +145,7 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: Returns the name of a header for a section to the TableView Controller
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return headerText[section]}
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return headerText[section]}
     
     //-----------------------------------------------------------------------------------------
     //
@@ -163,7 +159,7 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: Returns the name of a footer for a section to the TableView Controller
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? { return footerText[section] }
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? { return footerText[section] }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -176,7 +172,7 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: Returns the number of sections of Courses from an array
     //-----------------------------------------------------------------------------------------
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return mainText.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return mainText.count }
     
     //-----------------------------------------------------------------------------------------
     //
@@ -190,6 +186,6 @@ final class SettingView: UIViewController, UITableViewDelegate, UITableViewDataS
     //    Post-condition: Returns the number of rows to populate the tableview from the number of objects in the database
     //-----------------------------------------------------------------------------------------
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return mainText[section].count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return mainText[section].count }
 }
 

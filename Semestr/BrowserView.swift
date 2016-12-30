@@ -41,12 +41,12 @@ final class BrowserView: UIViewController, WKNavigationDelegate
         
         if (parseSite == "PAWS")
         {
-            webView.loadRequest(NSURLRequest(URL: NSURL(string: loginPage[0])!))
+            webView.load(URLRequest(url: URL(string: loginPage[0])!))
         }
         
         else
         {
-            webView.loadRequest(NSURLRequest(URL: NSURL(string: "https://google.com")!))
+            webView.load(URLRequest(url: URL(string: "https://google.com")!))
         }
         
         webView.allowsBackForwardNavigationGestures = true
@@ -80,9 +80,8 @@ final class BrowserView: UIViewController, WKNavigationDelegate
     //    Post-condition: This initializes the text field for a popup with the View Controller
     //-----------------------------------------------------------------------------------------
     
-    func configurationTextField(textField: UITextField!)
+    func configurationTextField(_ textField: UITextField!)
     {
-        print("generating the TextField")
         textField.placeholder = "Enter an item"
         tField = textField
     }
@@ -98,26 +97,26 @@ final class BrowserView: UIViewController, WKNavigationDelegate
     //    Post-condition: Parses PAWS, makes a new semester object and course objects into the database
     //-----------------------------------------------------------------------------------------
     
-    @IBAction func save(sender: AnyObject)
+    @IBAction func save(_ sender: AnyObject)
     {
         webView.evaluateJavaScript("document.getElementById('ptifrmtgtframe').contentWindow.document.body.innerHTML")
         {
             (result, error) in
             
-            let rawHTML = (result as! String).componentsSeparatedByString("\n")
+            let rawHTML = (result as! String).components(separatedBy: "\n")
             
             var pawsData:[[String]] =
                 [
-                    rawHTML.filter({ nil != $0.rangeOfString("PAGROUPDIVIDER") }).map({ line in line.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)}),
-                    rawHTML.filter({ nil != $0.rangeOfString("win0divMTG_LOC") }).map({ line in line.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)}),
-                    rawHTML.filter({ nil != $0.rangeOfString("win0divMTG_SCHED") }).map({ line in line.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)})
+                    rawHTML.filter({ nil != $0.range(of: "PAGROUPDIVIDER") }).map({ line in line.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)}),
+                    rawHTML.filter({ nil != $0.range(of: "win0divMTG_LOC") }).map({ line in line.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)}),
+                    rawHTML.filter({ nil != $0.range(of: "win0divMTG_SCHED") }).map({ line in line.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)})
             ]
 
-            let alert = UIAlertController(title: "Enter a name for this semster:", message: "", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Enter a name for this semster:", message: "", preferredStyle: .alert)
             
-            alert.addTextFieldWithConfigurationHandler(self.configurationTextField)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Done", style: .Default, handler:
+            alert.addTextField(configurationHandler: self.configurationTextField)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Done", style: .default, handler:
             {
                 (UIAlertAction) in
 
@@ -131,7 +130,7 @@ final class BrowserView: UIViewController, WKNavigationDelegate
                 }
             }))
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

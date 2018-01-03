@@ -1,7 +1,7 @@
 # Semestr
 
 ![platforms](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)
-[![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nextseto/Semestr/master/LICENSE)
 
 **Semestr** keeps track of classes, events, and meetings for students and professors over various semesters in multiple disciplines on their iOS devices running iOS 8+.
 
